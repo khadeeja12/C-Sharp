@@ -1,50 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace dt2
+namespace Abstraction
 {
-    public class Mobile
+    public abstract class Mobile
     {
-        
-            public string brand;
-            public string model;
-            public int batterylevel;
-            public Mobile(string brand, string model)
-            {
+        protected string brand;
+        protected string model;
+        protected int batterylevel;
+        protected Mobile(string brand,string model,int batterylevel) { 
             this.brand = brand;
-            this.model = model;  
-            this.batterylevel = 0;
-            }
-            public void MakeCall(string phoneNo)
-            {
-                Console.WriteLine(phoneNo);
-            }
-            public void ChargeBattery(int amount)
-            {
-              batterylevel = amount;
-             //Console.WriteLine("Enter the amount to increase battery level:");
-            //amount = int.Parse(Console.ReadLine());
-            //batterylevel = batterylevel + amount;
-            Console.WriteLine("Battery level after charging: " + batterylevel);
+            this.model = model;
+            this.batterylevel = batterylevel;
         }
-            public void UseBattery(int amount)
-            {
-            batterylevel = batterylevel - amount;
-            Console.WriteLine("Battery level after usage: " + batterylevel);
+        public abstract void StartDevice();
+        public abstract void UseDevice();
+        public virtual void ShowDetails()
+        {
+            //Console.WriteLine($"Brand: {brand}");
+            Console.WriteLine($"Brand: {brand}, Model: {model}, Battery Level: {batterylevel}%");
         }
-             public virtual void PrintDetails()
-             {
-            Console.WriteLine("Brand: " + brand);
-            Console.WriteLine("Model: " + model);
-            Console.WriteLine("Battery Level: " + batterylevel);
-
-
-        }
-        
     }
 }
